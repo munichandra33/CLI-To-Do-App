@@ -19,19 +19,6 @@ Enjoy staying organized with your to-do list!
 import os
 os.system('cls' if os.name == 'nt' else 'clear')
 
-tasks = [
-    "Morning jog",
-    "Water plants",
-    "Read chapter",
-    "Healthy snack",
-    "Email replies",
-    "Quick stretch",
-    "Gratitude list",
-    "Short walk",
-    "Review tasks",
-    "Positive message"
-]
-
 def clrscr():
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -75,7 +62,10 @@ def addtasks():
         print("Cannot Add Blank Tasks!")
         addtasks()
     else:
-        tasks.append(newtask)
+        # tasks.append(newtask)
+
+        with open("tasks.txt","a") as tasks:
+            tasks.write(newtask + "\n")
         print(f"{newtask} is Added To The Tasks List")
         while True:
             addmoretasks = str(input("Do you want to add more tasks(Y/N)"))
@@ -109,27 +99,32 @@ def main_menu():
 
 def viewtasks():
     while True:
-        if len(tasks) == 0:
+        with open("tasks.txt","r") as tasks:
+                taskslist = list(tasks)
+                # taskslist = taskslist.strip()
+        if len(taskslist) == 0:
             clrscr()
             print("There are No tasks To-Do.")
             main_menu()
             break
         else:
             print("These Are The Tasks In The To-Do List:")
-            for i in range(len(tasks)):
-                print(f"{i+1}. {tasks[i]}")
+            for i in range(len(taskslist)):
+                print(f"{i+1}. {taskslist[i].strip()}")
             main_menu()
             break
 
 def deletetasks():
-    if len(tasks) == 0:
+    with open("tasks.txt","r") as tasks:
+        taskslist = list(tasks)
+    if len(taskslist) == 0:
         clrscr()
         print("There are No tasks To-Do.")
         main_menu()
     else:
         while True:
-            for i in range(len(tasks)):
-                print(f"{i+1}. {tasks[i]}")
+            for i in range(len(taskslist)):
+                print(f"{i+1}. {taskslist[i].strip()}")
             try:
                 delete_task = int(input("Enter the No. of the Task To Delete:"))
                 clrscr()
@@ -137,9 +132,11 @@ def deletetasks():
             except ValueError:
                 clrscr()
                 print("Invalid Input: Enter Number Only!")
-        if delete_task in range(1, len(tasks)+1):
-            tasks.pop(delete_task-1)    
-            print(f" Task {delete_task} is Deleted from The Tasks List")
+        if delete_task in range(1, len(taskslist)+1):
+            taskslist.pop(delete_task-1)
+            with open("tasks.txt","w") as tasks:
+                tasks.writelines(taskslist)
+            print(f"Task {delete_task} is Deleted from The Tasks List")
         else:
             print(f"There is No Task With that Number {delete_task}. Try Again")
             deletetasks()

@@ -1,0 +1,21 @@
+Write a Python script.
+Read a chapter from a book.
+Solve coding problems.
+Practice mindfulness for 5 minutes.
+Exercise for 30 minutes.
+Review and organize email inbox.
+Watch an educational video.
+Plan the next day's tasks.
+Create a to-do list for the week.
+Write a blog post.
+Listen to a podcast.
+Try a new recipe.
+Learn a new language word.
+Draw or doodle for creativity.
+Take a short walk.
+Listen to music.
+Review and update resume.
+Complete the To do app
+Practice text storing using python
+take headache pills
+Debug the python code written
