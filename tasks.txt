@@ -19,3 +19,5 @@ Complete the To do app
 Practice text storing using python
 take headache pills
 Debug the python code written
+Take Headache Pills.
+Excercise Daily Twice.
